@@ -10,9 +10,10 @@ import SwiftUI
 
 extension ContentView {
     // Helper Functions
-    func cardThemePicker(with theme: [String], numberOfPairs: Int, title: String, symbol: String) -> some View {
+    func cardThemePicker(with theme: [String], cardColor: Color, numberOfPairs: Int, title: String, symbol: String) -> some View {
             Button(action: {
                 self.emojis = self.createSuffledPairedArray(with: theme, numberOfPairs: numberOfPairs)
+                self.cardColor = cardColor
             }, label: {
                 VStack {
                     Image(systemName: symbol)
