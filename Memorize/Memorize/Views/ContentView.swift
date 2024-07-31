@@ -49,15 +49,15 @@ struct ContentView: View {
     }
     
     var halloweenPicker: some View {
-        self.cardThemePicker(with: self.halloweenEmoji, cardColor: .dynamicOrange, numberOfPairs: 4, title: "Halloween", symbol: "moon.circle")
+        self.cardThemePicker(with: self.halloweenEmoji, cardColor: .dynamicOrange, title: "Halloween", symbol: "moon.circle")
     }
     
     var fishPicker: some View {
-        self.cardThemePicker(with: self.fishEmoji, cardColor: .dynamicCyanBlue, numberOfPairs: 5, title: "Fish", symbol: "fish.circle")
+        self.cardThemePicker(with: self.fishEmoji, cardColor: .dynamicCyanBlue, title: "Fish", symbol: "fish.circle")
     }
     
     var foodPicker: some View {
-        self.cardThemePicker(with: self.foodEmoji, cardColor: .dynamicLime, numberOfPairs: 6, title: "Food", symbol: "fork.knife.circle")
+        self.cardThemePicker(with: self.foodEmoji, cardColor: .dynamicLime, title: "Food", symbol: "fork.knife.circle")
     }
 }
 
