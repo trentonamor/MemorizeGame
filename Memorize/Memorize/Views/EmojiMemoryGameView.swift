@@ -10,23 +10,12 @@ import SwiftUI
 struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
-//    let halloweenEmoji = ["👻", "🎃", "🕷️", "😈", "💀", "🕸️", "🧙", "🙀", "👹", "😱", "☠️", "🍭"]
-//    let foodEmoji = ["🍎", "🍌", "🫐", "🥐", "🥓", "🧇", "🥨", "🌮", "🍑", "🍆", "🍔", "🍟"]
-//    let fishEmoji = ["🐙", "🦑", "🪼", "🦐", "🦞", "🦀", "🐡", "🐠", "🐬", "🐳", "🦈", "🐋"]
-    
     var body: some View {
         VStack {
-            Text("Memorize")
-                .font(.largeTitle)
-                .foregroundStyle(.dynamicGrey80)
             ScrollView {
                 cards
                     .animation(.default, value: viewModel.cards)
             }
-            Button("Shuffle") {
-                viewModel.shuffle()
-            }
-//            cardThemeAdjusters
         }
         .padding()
     }
@@ -44,28 +33,6 @@ struct EmojiMemoryGameView: View {
         }
         .foregroundStyle(.dynamicOrange)
     }
-    
-//    var cardThemeAdjusters: some View {
-//        HStack {
-//            halloweenPicker
-//            Spacer()
-//            fishPicker
-//            Spacer()
-//            foodPicker
-//        }
-//    }
-    
-//    var halloweenPicker: some View {
-//        self.cardThemePicker(with: self.halloweenEmoji, cardColor: .dynamicOrange, title: "Halloween", symbol: "moon.circle")
-//    }
-//    
-//    var fishPicker: some View {
-//        self.cardThemePicker(with: self.fishEmoji, cardColor: .dynamicCyanBlue, title: "Fish", symbol: "fish.circle")
-//    }
-//    
-//    var foodPicker: some View {
-//        self.cardThemePicker(with: self.foodEmoji, cardColor: .dynamicLime, title: "Food", symbol: "fork.knife.circle")
-//    }
 }
 
 #Preview {
