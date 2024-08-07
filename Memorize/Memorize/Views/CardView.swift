@@ -10,8 +10,11 @@ import SwiftUI
 
 struct CardView: View {
     
-    @State var isFaceUp = false
-    let cardContent: String
+    let card: MemoryGame<String>.Card
+    
+    init(_ card: MemoryGame<String>.Card) {
+        self.card = card
+    }
     
     var body: some View {
         ZStack {
@@ -19,18 +22,18 @@ struct CardView: View {
             Group {
                 base.fill(.backgroundElevated)
                 base.strokeBorder(lineWidth: 2)
-                Text(cardContent)
-                    .font(.largeTitle)
+                Text(card.content)
+                    .font(.system(size: 200))
+                    .minimumScaleFactor(0.01)
+                    .aspectRatio(1, contentMode: .fit)
             }
-            .opacity(isFaceUp ? 1 : 0)
-            base.fill().opacity(isFaceUp ? 0 : 1)
+            .opacity(card.isFaceUp ? 1 : 0)
+            base.fill().opacity(card.isFaceUp ? 0 : 1)
         }
-        .onTapGesture {
-            isFaceUp.toggle()
-        }
+        .opacity(self.card.isFaceUp || !self.card.isMatched ? 1: 0)
     }
 }
 
 #Preview {
-    CardView(cardContent: "🦖")
+    CardView(MemoryGame<String>.Card(content: "👻", id: UUID()))
 }
