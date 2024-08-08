@@ -14,7 +14,7 @@ extension MemoryGame {
         var isMatched: Bool = false
         let content: CardContent
         
-        var id: UUID
+        var id: String
         var debugDescription: String {
             return "\(id): \(content) \(isFaceUp ? "Up" : "Down") \(isMatched ? "Matched" : "")"
         }

@@ -35,5 +35,5 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(MemoryGame<String>.Card(content: "👻", id: UUID()))
+    CardView(MemoryGame<String>.Card(content: "👻", id: "1a"))
 }

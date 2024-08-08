@@ -23,11 +23,15 @@ struct EmojiMemoryGameView: View {
     
     var navBar: some View {
         HStack {
-            Text("Memorize")
-                .foregroundStyle(.dynamicGrey80)
+            VStack(alignment: .leading) {
+                Text("Memorize")
+                    .foregroundStyle(.dynamicGrey80)
+                Text(self.viewModel.themeName)
+                    .font(.title3)
+                    .foregroundStyle(.dynamicGrey40)
+            }
             Spacer()
             Button(action: {
-                // FIXME: Reset Game
                 self.viewModel.createNewGame()
             }, label: {
                 Text("New Game")
