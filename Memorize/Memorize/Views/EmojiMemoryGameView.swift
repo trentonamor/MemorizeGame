@@ -12,12 +12,28 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         VStack {
+            navBar
             ScrollView {
                 cards
                     .animation(.default, value: viewModel.cards)
             }
         }
         .padding()
+    }
+    
+    var navBar: some View {
+        HStack {
+            Text("Memorize")
+                .foregroundStyle(.dynamicGrey80)
+            Spacer()
+            Button(action: {
+                // FIXME: Reset Game
+                self.viewModel.createNewGame()
+            }, label: {
+                Text("New Game")
+            })
+        }
+        .font(.title2)
     }
     
     var cards: some View {

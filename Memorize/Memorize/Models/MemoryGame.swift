@@ -54,18 +54,6 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     private mutating func handleNoPreviousMatch(chosenIndex: Int) {
         faceUpCardIndex = chosenIndex
     }
-    
-    struct Card: Equatable, Identifiable, CustomDebugStringConvertible {
-        
-        var isFaceUp: Bool = false
-        var isMatched: Bool = false
-        let content: CardContent
-        
-        var id: UUID
-        var debugDescription: String {
-            return "\(id): \(content) \(isFaceUp ? "Up" : "Down") \(isMatched ? "Matched" : "")"
-        }
-    }
 }
 
 extension Array {
