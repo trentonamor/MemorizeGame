@@ -1,29 +1,37 @@
-//
-//  MemorizeGame.swift
-//  Memorize
-//
-//  Created by Trenton Parrotte on 8/1/24.
-//
-
 import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: [Card]
+    
     private var faceUpCardIndex: Int? {
-        get { self.cards.indices.filter { index in self.cards[index].isFaceUp }.only
+        get {
+            self.cards.indices.filter { index in self.cards[index].isFaceUp }.only
         }
-        set { self.cards.indices.forEach { self.cards[$0].isFaceUp = (newValue == $0) }
+        set {
+            // Reset all cards to face down unless it's the card at the new faceUpCardIndex
+            self.cards.indices.forEach { index in
+                let wasFaceUp = self.cards[index].isFaceUp
+                self.cards[index].isFaceUp = (newValue == index)
+                
+                if wasFaceUp && !self.cards[index].isFaceUp {
+                    // Mark the card as seen
+                    self.seenCards.insert(self.cards[index].id)
+                }
+            }
         }
     }
     
+    private var seenCards: Set<String> = []
+    private(set) var score = 0
+    
     init(numberOfCardPairs: Int, cardContentFactory: (Int) -> CardContent) {
         self.cards = []
-        // Add numberOfCardPairs x 2
-        for i in 0..<max(2,numberOfCardPairs) {
+        for i in 0..<numberOfCardPairs {
             let content = cardContentFactory(i)
             cards.append(Card(content: content, id: "\(i+1)a"))
             cards.append(Card(content: content, id: "\(i+1)b"))
         }
+        self.shuffle()
     }
     
     mutating func shuffle() {
@@ -38,21 +46,27 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         if let potentialMatchIndex = faceUpCardIndex {
             handleMatchCheck(chosenIndex: chosenIndex, potentialMatchIndex: potentialMatchIndex)
         } else {
-            handleNoPreviousMatch(chosenIndex: chosenIndex)
+            faceUpCardIndex = chosenIndex
         }
-        cards[chosenIndex].isFaceUp = true
     }
     
     private mutating func handleMatchCheck(chosenIndex: Int, potentialMatchIndex: Int) {
         if cards[chosenIndex].content == cards[potentialMatchIndex].content {
+            // If the cards match
             cards[chosenIndex].isMatched = true
             cards[potentialMatchIndex].isMatched = true
+            score += 2
+        } else {
+            // If the cards don't match
+            if seenCards.contains(cards[chosenIndex].id) {
+                score -= 1
+            }
+            if seenCards.contains(cards[potentialMatchIndex].id) {
+                score -= 1
+            }
         }
+        // Reveal the chosen card regardless of match
         cards[chosenIndex].isFaceUp = true
-    }
-    
-    private mutating func handleNoPreviousMatch(chosenIndex: Int) {
-        faceUpCardIndex = chosenIndex
     }
 }
 

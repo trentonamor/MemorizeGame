@@ -31,6 +31,10 @@ struct EmojiMemoryGameView: View {
                     .foregroundStyle(.dynamicGrey40)
             }
             Spacer()
+            Text("\(self.viewModel.score)")
+                .font(.largeTitle)
+                .foregroundStyle(.dynamicGrey80)
+            Spacer()
             Button(action: {
                 self.viewModel.createNewGame()
             }, label: {
