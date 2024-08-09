@@ -51,7 +51,7 @@ struct EmojiMemoryGameView: View {
                     }
             }
         }
-        .foregroundStyle(.dynamicOrange)
+        .foregroundStyle(self.viewModel.backOfCardColor)
     }
 }
 

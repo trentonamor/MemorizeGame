@@ -10,6 +10,7 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject {
     @Published private var model: MemoryGame<String>
+    var backOfCardColor: Color
     private(set) var themeName: String
     
     var cards: [MemoryGame<String>.Card] {
@@ -20,6 +21,7 @@ class EmojiMemoryGame: ObservableObject {
         let theme = EmojiMemoryGame.randomTheme()
         self.themeName = theme.name
         self.model = EmojiMemoryGame.createMemoryGame(theme: theme)
+        self.backOfCardColor = EmojiMemoryGame.getColor(theme.color)
         self.model.shuffle()
     }
     
@@ -34,7 +36,8 @@ class EmojiMemoryGame: ObservableObject {
     func createNewGame() {
         let theme = EmojiMemoryGame.randomTheme()
         self.themeName = theme.name
-        self.model = EmojiMemoryGame.createMemoryGame(theme: theme)
+        self.model = Self.createMemoryGame(theme: theme)
+        self.backOfCardColor = Self.getColor(theme.color)
         self.shuffle()
     }
     
@@ -48,5 +51,37 @@ class EmojiMemoryGame: ObservableObject {
     
     private static func randomTheme() -> MemoryGame<String>.Theme {
         return ThemeProvider.themes.randomElement() ?? ThemeProvider.themes[0]
+    }
+    
+    private static func getColor(_ color: String) -> Color {
+        switch color.lowercased() {
+            case "red":
+                return .dynamicRed
+            case "pink":
+                return .dynamicPink
+            case "orange":
+                return .dynamicOrange
+            case "yellow":
+                return .dynamicYellow
+            case "green":
+                return .dynamicGreen
+            case "lime":
+                return .dynamicLime
+            case "blue":
+                return .dynamicBlue
+            case "navy":
+                return .dynamicNavy
+            case "cyan":
+                return .dynamicCyanBlue
+            case "teal":
+                return .dynamicGreenBlue
+            case "turquoise":
+                return .dynamicGreenCyan
+            case "purple":
+                return .dynamicPurple
+            default:
+                return .dynamicGrey100
+        }
+
     }
 }
