@@ -10,18 +10,18 @@ import SwiftUI
 struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
+    private let cardAspectRatio: CGFloat = 2/3
+    
     var body: some View {
         VStack {
             navBar
-            ScrollView {
-                cards
-                    .animation(.default, value: viewModel.cards)
-            }
+            cards
+                .animation(.default, value: viewModel.cards)
         }
         .padding()
     }
     
-    var navBar: some View {
+    private var navBar: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text("Memorize")
@@ -44,15 +44,18 @@ struct EmojiMemoryGameView: View {
         .font(.title2)
     }
     
-    var cards: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 85), spacing: 0)], spacing: 0) {
-            ForEach(viewModel.cards) { card in
-                CardView(card)
-                    .aspectRatio(2/3, contentMode: .fit)
-                    .padding(4)
-                    .onTapGesture {
-                        viewModel.choose(card)
-                    }
+    private var cards: some View {
+        GeometryReader { geometry in
+            let gridItemSize = gridItemWidthThatFits(count: self.viewModel.cards.count, size: geometry.size, atAspectRatio: cardAspectRatio)
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: gridItemSize), spacing: 0)], spacing: 0) {
+                ForEach(viewModel.cards) { card in
+                    CardView(card)
+                        .aspectRatio(cardAspectRatio, contentMode: .fit)
+                        .padding(4)
+                        .onTapGesture {
+                            viewModel.choose(card)
+                        }
+                }
             }
         }
         .foregroundStyle(self.viewModel.backOfCardColor)
