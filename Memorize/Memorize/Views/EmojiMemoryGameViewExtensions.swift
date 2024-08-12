@@ -20,21 +20,4 @@ extension EmojiMemoryGameView {
         }
         return result.shuffled()
     }
-    
-    func gridItemWidthThatFits(count: Int, size: CGSize, atAspectRatio aspectRatio: CGFloat) -> CGFloat {
-        var colCount = 1.0
-        let count = CGFloat(count)
-        repeat {
-            let width = size.width / colCount
-            let height = width / aspectRatio
-            
-            let rowCount = (count / colCount).rounded(.up)
-            if rowCount * height < size.height {
-                return (size.width / colCount).rounded(.down)
-            }
-            colCount += 1
-        } while colCount < count
-        
-        return min(size.width / count, size.height * aspectRatio).rounded(.down)
-    }
 }

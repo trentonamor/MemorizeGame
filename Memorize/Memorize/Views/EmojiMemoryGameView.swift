@@ -45,18 +45,12 @@ struct EmojiMemoryGameView: View {
     }
     
     private var cards: some View {
-        GeometryReader { geometry in
-            let gridItemSize = gridItemWidthThatFits(count: self.viewModel.cards.count, size: geometry.size, atAspectRatio: cardAspectRatio)
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: gridItemSize), spacing: 0)], spacing: 0) {
-                ForEach(viewModel.cards) { card in
-                    CardView(card)
-                        .aspectRatio(cardAspectRatio, contentMode: .fit)
-                        .padding(4)
-                        .onTapGesture {
-                            viewModel.choose(card)
-                        }
+        AspectVGrid(self.viewModel.cards, aspectRatio: self.cardAspectRatio) { card in
+            CardView(card)
+                .padding(4)
+                .onTapGesture {
+                    viewModel.choose(card)
                 }
-            }
         }
         .foregroundStyle(self.viewModel.backOfCardColor)
     }

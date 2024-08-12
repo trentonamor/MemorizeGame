@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F361D8E2C6A8169001671A3 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F361D8D2C6A8169001671A3 /* AspectVGrid.swift */; };
 		2F3F0B912C5AF48A00386C56 /* EmojiMemoryGameViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F0B902C5AF48A00386C56 /* EmojiMemoryGameViewExtensions.swift */; };
 		2F3F0B932C5AF4A500386C56 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F0B922C5AF4A500386C56 /* CardView.swift */; };
 		2F3F0B962C5C35AE00386C56 /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F0B952C5C35AE00386C56 /* MemoryGame.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F361D8D2C6A8169001671A3 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		2F3F0B902C5AF48A00386C56 /* EmojiMemoryGameViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGameViewExtensions.swift; sourceTree = "<group>"; };
 		2F3F0B922C5AF4A500386C56 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		2F3F0B952C5C35AE00386C56 /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 				2F3F0B922C5AF4A500386C56 /* CardView.swift */,
 				2FD991472C595F3100271FAA /* EmojiMemoryGameView.swift */,
 				2F3F0B902C5AF48A00386C56 /* EmojiMemoryGameViewExtensions.swift */,
+				2F361D8D2C6A8169001671A3 /* AspectVGrid.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				2F453ABB2C65427700E913B7 /* Card.swift in Sources */,
 				2FD991462C595F3100271FAA /* MemorizeApp.swift in Sources */,
 				2F3F0B992C5C379D00386C56 /* EmojiMemoryGame.swift in Sources */,
+				2F361D8E2C6A8169001671A3 /* AspectVGrid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
