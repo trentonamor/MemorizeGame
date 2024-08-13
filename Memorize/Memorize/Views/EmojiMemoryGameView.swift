@@ -11,11 +11,13 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     private let cardAspectRatio: CGFloat = 2/3
+    private let spacing: CGFloat = 4
     
     var body: some View {
         VStack {
             navBar
             cards
+                .foregroundStyle(self.viewModel.backOfCardColor)
                 .animation(.default, value: viewModel.cards)
         }
         .padding()
@@ -47,12 +49,11 @@ struct EmojiMemoryGameView: View {
     private var cards: some View {
         AspectVGrid(self.viewModel.cards, aspectRatio: self.cardAspectRatio) { card in
             CardView(card)
-                .padding(4)
+                .padding(spacing)
                 .onTapGesture {
                     viewModel.choose(card)
                 }
         }
-        .foregroundStyle(self.viewModel.backOfCardColor)
     }
 }
 
